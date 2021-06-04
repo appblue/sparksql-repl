@@ -12,8 +12,11 @@ from pyspark.sql.types import *
 from datetime import date, timedelta, datetime
 import time
 
-# Getting Spark context
-spark = SparkSession.builder.appName("SparkREPL").getOrCreate()
+spark = SparkSession \
+    .builder.master("local") \
+    .config("spark.driver.bindAddress","127.0.0.1") \
+    .appName("SparkREPL") \
+    .getOrCreate()
 
 # Reading CSV into the context
 # ============================
